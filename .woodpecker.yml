@@ -1,0 +1,7 @@
+pipeline:
+  build:
+    image: alpine:3.15
+    commands:
+      - apk --update add ansible
+      - ansible-galaxy collection build
+ 
