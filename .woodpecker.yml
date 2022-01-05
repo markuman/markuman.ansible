@@ -4,4 +4,12 @@ pipeline:
     commands:
       - apk --update add ansible
       - ansible-galaxy collection build
+    
+  sanity:
+    image: alpine:3.15
+    commands:
+      - apk --update add ansible
+      - mkdir -p /ansible_collections/markuman/devops
+      - cp -a * /ansible_collections/markuman/devops
+      - cd /ansible_collections/markuman/devops && ansible-test sanity --python 3.9
  
