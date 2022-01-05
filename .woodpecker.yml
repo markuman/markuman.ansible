@@ -10,6 +10,7 @@ pipeline:
     commands:
       - apk --update add ansible py3-requests py3-pycodestyle py3-pylint
       - mkdir -p /ansible_collections/markuman/devops
+      - mkdir -p /root/.cache/pylint
       - cp -a * /ansible_collections/markuman/devops
       - cd /ansible_collections/markuman/devops && ansible-test sanity --python 3.9
  
