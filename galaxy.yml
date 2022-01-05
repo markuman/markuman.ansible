@@ -43,13 +43,13 @@ tags: []
 dependencies: {}
 
 # The URL of the originating SCM repository
-repository: https://git.osuv.de/ansible_collections/devops
+repository: https://git.osuv.de/ansible_collections/markuman.devops
 
 # The URL to any online docs
-documentation: https://git.osuv.de/ansible_collections/devops
+documentation: https://git.osuv.de/ansible_collections/markuman.devops
 
 # The URL to the homepage of the collection/project
-homepage: https://git.osuv.de/ansible_collections/devops
+homepage: https://git.osuv.de/ansible_collections/markuman.devops
 
 # The URL to the collection issue tracker
 issues: https://github.com/markuman/markuman.devops/issue
@@ -59,4 +59,3 @@ issues: https://github.com/markuman/markuman.devops/issue
 # uses 'fnmatch' to match the files or directories. Some directories and files like 'galaxy.yml', '*.pyc', '*.retry',
 # and '.git' are always filtered
 build_ignore: []
-

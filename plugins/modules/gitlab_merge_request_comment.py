@@ -26,12 +26,15 @@ options:
     description:
       - Your gitlab url
     required: true
+    type: str
   api_token:
     description:
       - API Token.
       - If not provided, it's read from ENV ANSIBLE_GITLAB_API_TOKEN
     required: false
     type: str
+requirements:
+    - requests
 '''
 
 EXAMPLES = '''
@@ -80,7 +83,7 @@ def main():
             'body': comment
         }
 
-        x = requests.post(gitlab_mr_url, data = data, headers = headers)
+        x = requests.post(gitlab_mr_url, data=data, headers=headers)
 
         change = False
         if x.status_code == 201:

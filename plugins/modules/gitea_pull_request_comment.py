@@ -33,6 +33,8 @@ options:
       - URL of your gitea instance
     required: true
     type: str
+requirements:
+    - requests
 '''
 
 EXAMPLES = '''
@@ -72,7 +74,6 @@ def main():
         repo = os.environ.get('CI_REPO')
 
         gitea_url = f'https://{api_url}/api/v1/repos/{repo}/issues/{issue_id}/comments'
-        q(gitea_url)
 
         headers = {
             'Authorization': f'token {api_token}',
@@ -84,7 +85,7 @@ def main():
             'body': comment
         }
 
-        x = requests.post(gitea_url, json = data, headers = headers)
+        x = requests.post(gitea_url, json=data, headers=headers)
 
         change = False
         if x.status_code == 201:
