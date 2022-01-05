@@ -1,0 +1,6 @@
+---
+requires_ansible: '>=2.9.6'
+action_groups:
+  devops:
+  - gitea_pull_request_comment
+  - gitlab_merge_request_comment
