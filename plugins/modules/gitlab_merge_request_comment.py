@@ -50,7 +50,6 @@ EXAMPLES = '''
 '''
 
 from ansible.module_utils.basic import AnsibleModule
-import requests
 import os
 
 
@@ -70,6 +69,11 @@ def main():
     _mr_id = os.environ.get('CI_OPEN_MERGE_REQUESTS')
 
     if _mr_id and api_token:
+        try:
+            import requests
+        except ImportError as error:
+            module.log(error)
+
         mr_id = _mr_id.split('!')[-1]
         pr_id = os.environ.get('CI_PROJECT_ID')
         gitlab_mr_url = f'https://{api_url}/api/v4/projects/{pr_id}/merge_requests/{mr_id}/notes'

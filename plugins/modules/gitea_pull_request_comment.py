@@ -50,7 +50,6 @@ EXAMPLES = '''
 '''
 
 from ansible.module_utils.basic import AnsibleModule
-import requests
 import os
 
 
@@ -70,6 +69,10 @@ def main():
     issue_id = os.environ.get('CI_PULL_REQUEST')
 
     if issue_id and api_token:
+        try:
+            import requests
+        except ImportError as error:
+            module.log(error)
 
         repo = os.environ.get('CI_REPO')
 
