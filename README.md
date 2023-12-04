@@ -7,7 +7,7 @@ Documentation for the collection.
 
 # markuman.ansible
 
-Covers/plan gitlab (_just one_), gitea and woodpecker modules and sentry (_glitchtip_) callback plugin (_so far_).
+Just everything I need that's not shipped somehwere else...
 
 ## markuman.ansible.gitlab_merge_request_comment
 
