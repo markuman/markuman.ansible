@@ -1,16 +1,15 @@
-# Ansible Collection - markuman.devops
+# Ansible Collection - markuman.ansible
 
-![CI Status](https://woodpecker.aws.osuv.de/api/badges/ansible_collections/markuman.devops/status.svg)
 
 Documentation for the collection.
 
-`ansible-galaxy collection install markuman.devops`
+`ansible-galaxy collection install markuman.ansible`
 
-# markuman.devops
+# markuman.ansible
 
 Covers/plan gitlab (_just one_), gitea and woodpecker modules and sentry (_glitchtip_) callback plugin (_so far_).
 
-## markuman.devops.gitlab_merge_request_comment
+## markuman.ansible.gitlab_merge_request_comment
 
 * Task works only if `CI_OPEN_MERGE_REQUESTS` is defined
 * `api_token` parameter can also be read from ENV `ANSIBLE_GITLAB_API_TOKEN`
@@ -21,7 +20,7 @@ Covers/plan gitlab (_just one_), gitea and woodpecker modules and sentry (_glitc
 ```yml
 
     - name: post message
-      markuman.devops.gitlab_merge_request_comment:
+      markuman.ansible.gitlab_merge_request_comment:
         api_url: gitlab.com
         comment: |
           Summary
@@ -31,7 +30,7 @@ Covers/plan gitlab (_just one_), gitea and woodpecker modules and sentry (_glitc
           | yes | 🐧 |
 ```
 
-## markuman.devops.gitea_pull_request_comment
+## markuman.ansible.gitea_pull_request_comment
 
 * Tasks works only if `CI_REPO` and `CI_PULL_REQUST` is defined
 * `api_token` parameter can also be read from ENV `ANSIBLE_GITEA_API_TOKEN`
@@ -41,7 +40,7 @@ Covers/plan gitlab (_just one_), gitea and woodpecker modules and sentry (_glitc
 
 ```yml
     - name: post message
-      markuman.devops.gitea_pull_request_comment:
+      markuman.ansible.gitea_pull_request_comment:
         api_url: git.osuv.de
         comment: |
           Summary
@@ -53,5 +52,5 @@ Covers/plan gitlab (_just one_), gitea and woodpecker modules and sentry (_glitc
 
 # Contribute
 
-* Issues and Pull Requests: https://github.com/markuman/markuman.devops
-* Origin: https://git.osuv.de/ansible_collections/markuman.devops
+* Issues and Pull Requests: https://github.com/markuman/markuman.ansible
+* Origin: https://git.osuv.de/ansible_collections/markuman.ansible
