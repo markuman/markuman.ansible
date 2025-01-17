@@ -18,9 +18,11 @@
 from six import string_types
 import datetime
 from ansible.module_utils.basic import AnsibleModule
-from ansible.module_utils.ec2 import (get_aws_connection_info, boto3_conn, ec2_argument_spec,
+from ansible.module_utils.ec2 import (boto3_conn, ec2_argument_spec,
                                       camel_dict_to_snake_dict, ansible_dict_to_boto3_filter_list,
                                       ansible_dict_to_boto3_tag_list, boto3_tag_list_to_ansible_dict)
+from ansible_collections.community.aws.plugins.module_utils.modules import AnsibleCommunityAWSModule as AnsibleAWSModule
+
 
 try:
     import boto3
@@ -285,25 +287,15 @@ def main():
         )
     )
 
-    module = AnsibleModule(
-        argument_spec=argument_spec,
-        supports_check_mode=False,
-        mutually_exclusive=[],
-        required_together=[]
-    )
+    module = AnsibleAWSModule(argument_spec=argument_spec)
 
     # validate dependencies
     if not HAS_BOTO3:
         module.fail_json(msg='boto3 is required for this module.')
 
     try:
-        region, endpoint, aws_connect_kwargs = get_aws_connection_info(module, boto3=True)
-        aws_connect_kwargs.update(dict(region=region,
-                                       endpoint=endpoint,
-                                       conn_type='client',
-                                       resource=module.params['service']
-                                       ))
-        client = boto3_conn(module, **aws_connect_kwargs)
+        client = module.client(module.params.get("service"))
+
     except (ClientError, ParamValidationError, MissingParametersError) as e:
         module.fail_json(msg="Can't authorize connection - {0}".format(e))
     except EndpointConnectionError as e:
