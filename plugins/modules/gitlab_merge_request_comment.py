@@ -91,12 +91,19 @@ def main():
 
         change = False
         if x.status_code == 201:
-            change = True
+            module.exit_json(changed=True, status=x.status_code)
 
-        module.exit_json(changed=change, status=x.status_code)
+        else:
+          module.fail_json(msg=f"return code of {api_url} was {x.status_code}")
+
 
     else:
-        module.exit_json(changed=False, status=None)
+        if not _mr_id:
+          module.exit_json(msg="no merge request id for reporting found", changed=False, status=x.status_code)
+
+        elif not api_token:
+          module.fail_json(msg="no api token provided")
+
 
 
 if __name__ == '__main__':
